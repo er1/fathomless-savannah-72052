@@ -1,0 +1,20 @@
+{
+  "name": "fathomless-savannah-72052",
+  "version": "1.0.0",
+  "description": "Fathomless Savannah 72052",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/er1/fathomless-savannah-72052.git"
+  },
+  "author": "Eric Chan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/er1/fathomless-savannah-72052/issues"
+  },
+  "homepage": "https://github.com/er1/fathomless-savannah-72052#readme"
+}
