@@ -12,14 +12,4 @@ app.get('/add/:a/:b', function (req, res) {
 	res.send(JSON.stringify( { r: +req.params.a + +req.params.b } ));
 });
 
-app.get('/rnd', function (req, res) {
-	res.set('Content-Type', 'text/plain');
-	res.send((Math.random() < 0.5).toString());
-});
-
-app.get('/rnd/:n', function (req, res) {
-	res.set('Content-Type', 'text/plain');
-	res.send(Math.floor(1 + Math.random() * req.params.n).toString());
-});
-
 app.listen(process.env.PORT || 8080);
