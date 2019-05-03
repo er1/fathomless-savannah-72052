@@ -1,15 +1,33 @@
+#!/usr/bin/env node
+
 'use strict';
 
+const http = require('http');
+const ws = require('ws');
 const express = require('express');
+const path = require('path');
+
 const app = express();
+app.disable('x-powered-by');
 
-app.get('/', function (req, res) {
-	res.send('<!DOCTYPE html><title>0</title>');
+const server = http.createServer(app);
+const wss = new ws.Server({ server: server });
+
+const conns = new Set();
+
+wss.on('connection', function (conn) {
+	conns.add(conn);
+	conn.on('close', function () {
+		conns.delete(conn);
+	});
+	conn.on('message', function (message) {
+		conns.forEach(function (other_conn) {
+			if (conn !== other_conn) {
+				other_conn.send(message);
+			}
+		});
+	});
 });
 
-app.get('/add/:a/:b', function (req, res) {
-	res.set('Content-Type', 'application/json');
-	res.send(JSON.stringify( { r: +req.params.a + +req.params.b } ));
-});
-
-app.listen(process.env.PORT || 8080);
+app.use(express.static(path.join(__dirname, 'public')));
+server.listen(process.env.PORT || 8080);
