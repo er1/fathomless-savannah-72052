@@ -1,0 +1,25 @@
+{
+  "name": "fathomless-savannah-72052",
+  "version": "1.0.0",
+  "description": "Fathomless Savannah 72052",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/er1/fathomless-savannah-72052.git"
+  },
+  "author": "Eric Chan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/er1/fathomless-savannah-72052/issues"
+  },
+  "homepage": "https://github.com/er1/fathomless-savannah-72052#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.8.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
+  }
+}
