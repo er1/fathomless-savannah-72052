@@ -6,9 +6,11 @@ const crypto = require('crypto');
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const morgan = require('morgan');
 
 const app = express();
 app.disable('x-powered-by');
+app.use(morgan('common'));
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -26,7 +28,8 @@ const privKey = crypto.createPrivateKey({
 // const pubKey = crypto.createPublicKey(privKey);
 
 function fib(n) {
-  let a = n.constructor(0); let b = n.constructor(1);
+  let a = n.constructor(0);
+  let b = n.constructor(1);
   while (n-- > 0) {
     [a, b] = [b, a + b];
   }
@@ -44,11 +47,11 @@ app.get('/fib/:n', (req, res) => {
 
     const data = Buffer.from(result, 'utf8');
     const signature = crypto.sign(null, data, privKey);
+	res.append('X-Result-Signature', signature.toString('base64'));
 
     res.json({
-      n: result,
-      f: f(Number(n)),
-      sig: signature.toString('base64'),
+      n: String(n),
+      result: result,
     });
   } catch (ex) {
     res.status(500).send();
